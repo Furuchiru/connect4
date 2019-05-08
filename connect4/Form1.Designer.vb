@@ -124,7 +124,7 @@ Partial Class Form1
         'c10
         '
         Me.c10.Image = Global.connect4.My.Resources.Resources.a
-        Me.c10.Location = New System.Drawing.Point(21, 78)
+        Me.c10.Location = New System.Drawing.Point(21, 80)
         Me.c10.Name = "c10"
         Me.c10.Size = New System.Drawing.Size(60, 60)
         Me.c10.TabIndex = 19

@@ -5,10 +5,10 @@ Imports System.Net
 Public Class Form1
 
     'variables
-    Public Shared obj As PictureBox
-    Public Shared table(5, 6) As Integer
-    Public Shared objName, column, row As String
-    Public Shared player As Integer
+    Public obj As PictureBox
+    Public table(5, 6) As Integer
+    Public column, row, namae As String
+    Public player As Integer
 
     'pictube box clicks
     Public Sub ClickButton(sender As Object, e As EventArgs) Handles c50.Click, c51.Click,
@@ -19,30 +19,24 @@ Public Class Form1
     c16.Click, c00.Click, c01.Click, c02.Click, c03.Click, c04.Click, c05.Click, c06.Click
 
         obj = CType(sender, PictureBox)
-        objName = obj.Name
-
-        column = objName.Chars(1)
-        row = objName.Chars(2)
+        column = obj.Name.Chars(1)
+        row = obj.Name.Chars(2)
         lblPos.Text = "Pos: " & column & row
 
-        If table(column, row) <> 0 Then
-        Else
-            table(column, row) = player
-            If ChangeColor(obj, player) Then
-                If player = 1 Then
-                    player = 2
-                ElseIf player = 2 Then
-                    player = 1
-                Else
-                    'jugador 3 )?? XD
+        For i As Integer = 5 To 0 Step -1
+            If table(i, row) = 0 Then
+                namae = "c" & i & row
+                obj = Me.Controls(namae)
+                If ChangePlayer() Then
+                    table(i, row) = player
                 End If
+                Exit For
             End If
-        End If
+        Next
 
         lblPlayer.Text = "Current Player: " & ConvPlayer(player)
 
     End Sub
-
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'set variable data
@@ -57,8 +51,8 @@ Public Class Form1
     End Sub
 
 
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        'write 2d array to listbox // debug
         Dim output As String
         ListBox1.Items.Clear()
         For i = 0 To 5
@@ -73,6 +67,22 @@ Public Class Form1
 End Class
 
 Module methods
+
+    Public Function ChangePlayer()
+        If ChangeColor(Form1.obj, Form1.player) Then
+            If Form1.player = 1 Then
+                Form1.player = 2
+                Return True
+            ElseIf Form1.player = 2 Then
+                Form1.player = 1
+                Return True
+            Else
+                'jugador 3 )?? XD
+                Return True
+            End If
+        End If
+        Return False
+    End Function
 
     Public Function ConvPlayer(a As Integer)
         If a = 1 Then
@@ -90,6 +100,7 @@ Module methods
     End Sub
 
     Public Function ChangeColor(b As PictureBox, i As Integer)
+
         Select Case i
             Case 1
                 b.Image = My.Resources.b
