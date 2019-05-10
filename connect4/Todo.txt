@@ -1,0 +1,18 @@
+﻿
+TODO list
+
+interface - done
+playability - dpme
+wins - done
+restart - done
+proper messages - pending
+qt msgboxes - alomost done
+proper names - pending
+online - xd
+colors & language - pending
+
+
+
+
+
+

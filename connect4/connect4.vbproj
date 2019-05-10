@@ -156,5 +156,8 @@
   <ItemGroup>
     <None Include="Resources\c.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Todo.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
