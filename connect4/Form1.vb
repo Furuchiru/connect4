@@ -8,8 +8,8 @@ Public Class Form1
     Public table(5, 6) As Integer
     Public column, row, namae, playerName, version As String
     Public player As Integer
-    Public WithEvents timerOpen As New Timer With {.Interval = 3}
-    Public WithEvents timerClose As New Timer With {.Interval = 1}
+    Public WithEvents TimerOpen As New Timer With {.Interval = 3}
+    Public WithEvents TimerClose As New Timer With {.Interval = 1}
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'set variable data
@@ -79,24 +79,23 @@ Public Class Form1
     End Sub
 
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
-        MsgBox("Connect4 Version " & version & Environment.NewLine & "Made by Furuchi",
-                     MsgBoxStyle.OkOnly, "About")
+        FlexibleMessageBox.Show("Connect4 Version " & version & Environment.NewLine & "Made by Furuchi", "Software Info", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
-    Public Sub timerOpen_Tick(sender As Object, e As EventArgs) Handles timerOpen.Tick
-        Me.Width = Me.Width + 5
-        If Me.Width > 800 Then
+    Public Sub TimerOpen_Tick(sender As Object, e As EventArgs) Handles timerOpen.Tick
+        Width = Width + 5
+        If Width > 800 Then
             timerOpen.Enabled = False
         End If
     End Sub
 
-    Public Sub timerClose_Tick(sender As Object, e As EventArgs) Handles timerClose.Tick
-        Me.Width = Me.Width - 5
-        If Me.Width < 620 Then
+    Public Sub TimerClose_Tick(sender As Object, e As EventArgs) Handles timerClose.Tick
+        Width = Width - 5
+        If Width < 620 Then
             pnlOptions.Visible = False
         End If
-        If Me.Width < 525 Then
-            timerClose.Enabled = False
+        If Width < 525 Then
+            TimerClose.Enabled = False
         End If
     End Sub
 
@@ -167,8 +166,8 @@ Public Class Form1
 
     Public Sub CheckWin()
 
-        Dim win1 As Integer = 0
-        Dim win2 As Integer = 0
+        Dim win1 As Integer
+        Dim win2 As Integer
         Dim c As Integer = 0
 
 #Region "Horizontal"
@@ -505,9 +504,15 @@ Public Class Form1
 
     Public Sub Win(a As String)
 
-        MsgBox(a)
-        ResetAll()
-
+        Dim result = FlexibleMessageBox.Show(a & Environment.NewLine & "New Game?", "Game Ended!",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Information,
+                                    MessageBoxDefaultButton.Button2)
+        If result.ToString = "Yes" Then
+            ResetAll()
+        ElseIf result.ToString = "No" Then
+            Application.Exit
+        End If
     End Sub
     Public Sub ResetAll()
 
