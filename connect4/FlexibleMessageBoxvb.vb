@@ -52,6 +52,8 @@ Imports System.Windows.Forms
 ' *  
 ' ************************************************************************************************************
 ' * History:
+' * Made the box not resizable by Furuchi
+' *
 ' *  Version 1.3 - 11.March 2014
 ' *   - Converted to VB.NET
 ' *  Version 1.2 - 10.August 2013
@@ -72,6 +74,9 @@ Imports System.Windows.Forms
 Public Class FlexibleMessageBox
 #Region "Public statics"
 
+    Public Shared SIZEGRIP As SizeGripStyle = SizeGripStyle.Show 'If we make box non resizable, size grip need Not be shown
+    Public Shared BORDERSTYLE As FormBorderStyle = FormBorderStyle.FixedDialog 'Default Is resizable
+
     ''' <summary>
     ''' Defines the maximum width for all FlexibleMessageBox instances in percent of the working area.
     ''' 
@@ -81,6 +86,7 @@ Public Class FlexibleMessageBox
     ''' 
     ''' Default is: 70% of the working area width.
     ''' </summary>
+    ''' 
     Public Shared MAX_WIDTH_FACTOR As Double = 0.5
 
     ''' <summary>
@@ -360,7 +366,8 @@ Public Class FlexibleMessageBox
             Me.MinimumSize = New System.Drawing.Size(276, 140)
             Me.Name = "FlexibleMessageBoxForm"
             Me.ShowIcon = False
-            Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show
+            Me.SizeGripStyle = SIZEGRIP ' defualt is System.Windows.Forms.SizeGripStyle.Show
+            Me.FormBorderStyle = BORDERSTYLE ' added
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
             Me.Text = "<Caption>"
             AddHandler Me.Shown, New System.EventHandler(AddressOf Me.FlexibleMessageBoxForm_Shown)

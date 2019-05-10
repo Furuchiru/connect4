@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Form1
+Partial Class Game
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -127,7 +127,7 @@ Partial Class Form1
         Me.ListBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.ItemHeight = 24
-        Me.ListBox1.Location = New System.Drawing.Point(19, 69)
+        Me.ListBox1.Location = New System.Drawing.Point(19, 94)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.Size = New System.Drawing.Size(199, 172)
         Me.ListBox1.TabIndex = 55
@@ -154,19 +154,19 @@ Partial Class Form1
         '
         'tbPlayerName
         '
-        Me.tbPlayerName.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbPlayerName.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbPlayerName.Location = New System.Drawing.Point(19, 37)
         Me.tbPlayerName.Name = "tbPlayerName"
-        Me.tbPlayerName.Size = New System.Drawing.Size(168, 26)
+        Me.tbPlayerName.Size = New System.Drawing.Size(168, 29)
         Me.tbPlayerName.TabIndex = 58
         '
         'lblPlayerName
         '
         Me.lblPlayerName.AutoSize = True
-        Me.lblPlayerName.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPlayerName.Location = New System.Drawing.Point(44, 15)
+        Me.lblPlayerName.Font = New System.Drawing.Font("Times New Roman", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPlayerName.Location = New System.Drawing.Point(52, 13)
         Me.lblPlayerName.Name = "lblPlayerName"
-        Me.lblPlayerName.Size = New System.Drawing.Size(71, 19)
+        Me.lblPlayerName.Size = New System.Drawing.Size(84, 21)
         Me.lblPlayerName.TabIndex = 59
         Me.lblPlayerName.Text = "Nickname"
         '
@@ -616,7 +616,7 @@ Partial Class Form1
         Me.menuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SettingsToolStripMenuItem, Me.AboutToolStripMenuItem, Me.ExitToolStripMenuItem})
         Me.menuStrip.Location = New System.Drawing.Point(0, 0)
         Me.menuStrip.Name = "menuStrip"
-        Me.menuStrip.Size = New System.Drawing.Size(271, 25)
+        Me.menuStrip.Size = New System.Drawing.Size(151, 25)
         Me.menuStrip.TabIndex = 62
         Me.menuStrip.Text = "MenuStrip1"
         '
@@ -646,7 +646,9 @@ Partial Class Form1
         Me.Controls.Add(Me.pnlCircles)
         Me.Controls.Add(Me.pnlOptions)
         Me.Controls.Add(Me.menuStrip)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MainMenuStrip = Me.menuStrip
+        Me.MaximizeBox = False
         Me.Name = "Form1"
         Me.Text = "Form1"
         Me.pnlOptions.ResumeLayout(False)

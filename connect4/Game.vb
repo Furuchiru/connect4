@@ -1,7 +1,7 @@
 ﻿'imports
 Imports System.IO
 
-Public Class Form1
+Public Class Game
 
     'variables
     Public obj As PictureBox
@@ -19,6 +19,7 @@ Public Class Form1
         Size = New Size(525, 480)
         pnlOptions.Visible = False
         version = "1.5"
+
         ResetTable()
         UpdateLB()
     End Sub
@@ -68,12 +69,12 @@ Public Class Form1
 
     Private Sub SettingsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SettingsToolStripMenuItem.Click
         If pnlOptions.Visible Then
-            timerClose.Enabled = True
+            TimerClose.Enabled = True
             '   Size = New Size(525, 480)
         Else
             pnlOptions.Visible = True
             '     Size = New Size(820, 480)
-            timerOpen.Enabled = True
+            TimerOpen.Enabled = True
         End If
 
     End Sub
@@ -82,14 +83,14 @@ Public Class Form1
         FlexibleMessageBox.Show("Connect4 Version " & version & Environment.NewLine & "Made by Furuchi", "Software Info", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
-    Public Sub TimerOpen_Tick(sender As Object, e As EventArgs) Handles timerOpen.Tick
+    Public Sub TimerOpen_Tick(sender As Object, e As EventArgs) Handles TimerOpen.Tick
         Width = Width + 5
         If Width > 820 Then
             TimerOpen.Enabled = False
         End If
     End Sub
 
-    Public Sub TimerClose_Tick(sender As Object, e As EventArgs) Handles timerClose.Tick
+    Public Sub TimerClose_Tick(sender As Object, e As EventArgs) Handles TimerClose.Tick
         Width = Width - 5
         If Width < 620 Then
             pnlOptions.Visible = False
@@ -514,7 +515,7 @@ Public Class Form1
         If result.ToString = "Yes" Then
             ResetAll()
         ElseIf result.ToString = "No" Then
-            Application.Exit
+            Application.Exit()
         End If
     End Sub
     Public Sub ResetAll()
