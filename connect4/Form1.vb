@@ -1,14 +1,27 @@
 ﻿'imports
 Imports System.IO
-Imports System.Net
 
 Public Class Form1
 
     'variables
     Public obj As PictureBox
     Public table(5, 6) As Integer
-    Public column, row, namae As String
+    Public column, row, namae, playerName, version As String
     Public player As Integer
+    Public WithEvents timerOpen As New Timer With {.Interval = 3}
+    Public WithEvents timerClose As New Timer With {.Interval = 1}
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'set variable data
+        player = 1
+        playerName = "Player"
+        lblPlayer.Text = "Current Player: " & playerName & " - " & ConvPlayer(player)
+        Size = New Size(525, 480)
+        pnlOptions.Visible = False
+        version = "1.5"
+        ResetTable()
+        UpdateLB()
+    End Sub
 
     'pictube box clicks
     Public Sub ClickButton(sender As Object, e As EventArgs) Handles c50.Click, c51.Click,
@@ -18,6 +31,7 @@ Public Class Form1
     c25.Click, c26.Click, c10.Click, c11.Click, c12.Click, c13.Click, c14.Click, c15.Click,
     c16.Click, c00.Click, c01.Click, c02.Click, c03.Click, c04.Click, c05.Click, c06.Click
 
+
         obj = CType(sender, PictureBox)
         column = obj.Name.Chars(1)
         row = obj.Name.Chars(2)
@@ -26,7 +40,7 @@ Public Class Form1
         For i As Integer = 5 To 0 Step -1
             If table(i, row) = 0 Then
                 namae = "c" & i & row
-                obj = Controls(namae)
+                obj = pnlCircles.Controls(namae)
                 If ChangeColor(obj, player) Then
                     table(i, row) = player
                     If player = 1 Then
@@ -43,18 +57,51 @@ Public Class Form1
             End If
         Next
 
-        lblPlayer.Text = "Current Player: " & player & " - " & ConvPlayer(player)
+        lblPlayer.Text = "Current Player: " & playerName & " - " & ConvPlayer(player)
 
     End Sub
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'set variable data
-        player = 1
-        lblPlayer.Text = "Current Player: " & player & " - " & ConvPlayer(player)
-
-        ResetTable()
-        UpdateLB()
+    Private Sub TbPlayerName_TextChanged(sender As Object, e As EventArgs) Handles tbPlayerName.TextChanged
+        playerName = tbPlayerName.Text
+        lblPlayer.Text = "Current Player: " & playerName & " - " & ConvPlayer(player)
     End Sub
+
+    Private Sub SettingsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SettingsToolStripMenuItem.Click
+        If pnlOptions.Visible Then
+            timerClose.Enabled = True
+            '   Size = New Size(525, 480)
+        Else
+            pnlOptions.Visible = True
+            '     Size = New Size(820, 480)
+            timerOpen.Enabled = True
+        End If
+
+    End Sub
+
+    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        MsgBox("Connect4 Version " & version & Environment.NewLine & "Made by Furuchi",
+                     MsgBoxStyle.OkOnly, "About")
+    End Sub
+
+    Public Sub timerOpen_Tick(sender As Object, e As EventArgs) Handles timerOpen.Tick
+        Me.Width = Me.Width + 5
+        If Me.Width > 800 Then
+            timerOpen.Enabled = False
+        End If
+    End Sub
+
+    Public Sub timerClose_Tick(sender As Object, e As EventArgs) Handles timerClose.Tick
+        Me.Width = Me.Width - 5
+        If Me.Width < 620 Then
+            pnlOptions.Visible = False
+        End If
+        If Me.Width < 525 Then
+            timerClose.Enabled = False
+        End If
+    End Sub
+
+#Region "Functions"
+    'Functions
 
     Public Sub UpdateLB()
         'write 2d array to listbox // debug
@@ -92,6 +139,15 @@ Public Class Form1
         End Using
     End Sub
 
+    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+        Dim result As Integer = MessageBox.Show("Queri salir wn?", "Nos vimo?", MessageBoxButtons.YesNo)
+        If result = DialogResult.No Then
+
+        ElseIf result = DialogResult.Yes Then
+            Application.Exit()
+        End If
+    End Sub
+
     Public Function ChangeColor(b As PictureBox, i As Integer)
 
         Select Case i
@@ -108,7 +164,6 @@ Public Class Form1
         Return False
 
     End Function
-
 
     Public Sub CheckWin()
 
@@ -475,14 +530,16 @@ Public Class Form1
             End If
 
             If i < 10 Then
-                obj = Controls("c0" & i)
+                obj = pnlCircles.Controls("c0" & i)
                 ChangeColor(obj, 0)
             Else
-                obj = Controls("c" & i)
+                obj = pnlCircles.Controls("c" & i)
                 ChangeColor(obj, 0)
             End If
         Next
 
     End Sub
+
+#End Region
 
 End Class
