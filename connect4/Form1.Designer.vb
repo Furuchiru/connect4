@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form1
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Form1
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.c00 = New System.Windows.Forms.PictureBox()
         Me.c10 = New System.Windows.Forms.PictureBox()
@@ -64,7 +64,6 @@ Partial Class Form1
         Me.c46 = New System.Windows.Forms.PictureBox()
         Me.c16 = New System.Windows.Forms.PictureBox()
         Me.c06 = New System.Windows.Forms.PictureBox()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.lblPos = New System.Windows.Forms.Label()
         Me.lblPlayer = New System.Windows.Forms.Label()
@@ -490,21 +489,14 @@ Partial Class Form1
         Me.c06.TabIndex = 48
         Me.c06.TabStop = False
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(516, 65)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 54
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'ListBox1
         '
+        Me.ListBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.Location = New System.Drawing.Point(516, 94)
+        Me.ListBox1.ItemHeight = 24
+        Me.ListBox1.Location = New System.Drawing.Point(520, 32)
         Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(129, 121)
+        Me.ListBox1.Size = New System.Drawing.Size(199, 172)
         Me.ListBox1.TabIndex = 55
         '
         'lblPos
@@ -535,7 +527,6 @@ Partial Class Form1
         Me.Controls.Add(Me.lblPlayer)
         Me.Controls.Add(Me.lblPos)
         Me.Controls.Add(Me.ListBox1)
-        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.c36)
         Me.Controls.Add(Me.c26)
         Me.Controls.Add(Me.c56)
@@ -668,7 +659,6 @@ Partial Class Form1
     Friend WithEvents c46 As PictureBox
     Friend WithEvents c16 As PictureBox
     Friend WithEvents c06 As PictureBox
-    Friend WithEvents Button1 As Button
     Friend WithEvents ListBox1 As ListBox
     Friend WithEvents lblPos As Label
     Friend WithEvents lblPlayer As Label

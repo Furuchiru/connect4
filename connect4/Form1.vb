@@ -26,32 +26,37 @@ Public Class Form1
         For i As Integer = 5 To 0 Step -1
             If table(i, row) = 0 Then
                 namae = "c" & i & row
-                obj = Me.Controls(namae)
-                If ChangePlayer() Then
+                obj = Controls(namae)
+                If ChangeColor(obj, player) Then
                     table(i, row) = player
+                    If player = 1 Then
+                        player = 2
+                    ElseIf player = 2 Then
+                        player = 1
+                    Else
+                        'jugador 3 )?? XD
+                    End If
+                    CheckWin()
+                    UpdateLB()
                 End If
                 Exit For
             End If
         Next
 
-        lblPlayer.Text = "Current Player: " & ConvPlayer(player)
+        lblPlayer.Text = "Current Player: " & player & " - " & ConvPlayer(player)
 
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'set variable data
         player = 1
-        lblPlayer.Text = "Current Player: " & ConvPlayer(player)
+        lblPlayer.Text = "Current Player: " & player & " - " & ConvPlayer(player)
 
-        For i As Integer = 0 To 5
-            For o As Integer = 0 To 6
-                table(i, o) = 0
-            Next
-        Next
+        ResetTable()
+        UpdateLB()
     End Sub
 
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Public Sub UpdateLB()
         'write 2d array to listbox // debug
         Dim output As String
         ListBox1.Items.Clear()
@@ -64,25 +69,13 @@ Public Class Form1
         Next i
     End Sub
 
-End Class
-
-Module methods
-
-    Public Function ChangePlayer()
-        If ChangeColor(Form1.obj, Form1.player) Then
-            If Form1.player = 1 Then
-                Form1.player = 2
-                Return True
-            ElseIf Form1.player = 2 Then
-                Form1.player = 1
-                Return True
-            Else
-                'jugador 3 )?? XD
-                Return True
-            End If
-        End If
-        Return False
-    End Function
+    Public Sub ResetTable()
+        For i As Integer = 0 To 5
+            For o As Integer = 0 To 6
+                table(i, o) = 0
+            Next
+        Next
+    End Sub
 
     Public Function ConvPlayer(a As Integer)
         If a = 1 Then
@@ -108,8 +101,259 @@ Module methods
             Case 2
                 b.Image = My.Resources.c
                 Return True
+            Case 0
+                b.Image = My.Resources.a
+                Return True
         End Select
         Return False
+
     End Function
 
-End Module
+
+    Public Sub CheckWin()
+
+        Dim win1 As Integer = 0
+        Dim win2 As Integer = 0
+        Dim c As Integer = 0
+
+#Region "Horizontal"
+        For i As Integer = 5 To 0 Step -1
+            win1 = 0
+            win2 = 0
+            For o As Integer = 0 To 6 Step 1
+                If table(i, o) = 1 Then
+                    win1 += 1
+                    win2 = 0
+                ElseIf table(i, o) = 2 Then
+                    win2 += 1
+                    win1 = 0
+                ElseIf table(i, o) = 0 Then
+                    win1 = 0
+                    win2 = 0
+                End If
+                If win1 = 4 Then
+                    Win("player 1 horizontal")
+                    Exit Sub
+                ElseIf win2 = 4 Then
+                    Win("player 2 horizontal")
+                    Exit Sub
+                End If
+            Next
+        Next
+        c = 0
+#End Region
+#Region "Vertical"
+        For o As Integer = 0 To 6 Step 1
+            win1 = 0
+            win2 = 0
+            For i As Integer = 5 To 0 Step -1
+                If table(i, o) = 1 Then
+                    win1 += 1
+                    win2 = 0
+                ElseIf table(i, o) = 2 Then
+                    win2 += 1
+                    win1 = 0
+                ElseIf table(i, o) = 0 Then
+                    win1 = 0
+                    win2 = 0
+                End If
+                If win1 = 4 Then
+                    Win("player 1 vertical")
+                    Exit Sub
+                ElseIf win2 = 4 Then
+                    Win("player 2 vertical")
+                    Exit Sub
+                End If
+            Next
+        Next
+        win1 = 0
+        win2 = 0
+#End Region
+#Region "Diagonal left-right"
+        For h As Integer = 0 To 5
+            If table(h, c) = 1 Then
+                win1 += 1
+                win2 = 0
+            ElseIf table(h, c) = 2 Then
+                win2 += 1
+                win1 = 0
+            ElseIf table(h, c) = 0 Then
+                win1 = 0
+                win2 = 0
+            End If
+            If win1 = 4 Then
+                Win("player 1 diagonal")
+                Exit Sub
+            ElseIf win2 = 4 Then
+                Win("player 2 diagonal")
+                Exit Sub
+            End If
+            c += 1
+        Next
+        win1 = 0
+        win2 = 0
+        c = 0
+        For h As Integer = 1 To 5
+            If table(h, c) = 1 Then
+                win1 += 1
+                win2 = 0
+            ElseIf table(h, c) = 2 Then
+                win2 += 1
+                win1 = 0
+            ElseIf table(h, c) = 0 Then
+                win1 = 0
+                win2 = 0
+            End If
+            If win1 = 4 Then
+                Win("player 1 diagonal")
+                Exit Sub
+            ElseIf win2 = 4 Then
+                Win("player 2 diagonal")
+                Exit Sub
+            End If
+            c += 1
+        Next
+        win1 = 0
+        win2 = 0
+        c = 0
+        For h As Integer = 2 To 5
+            If table(h, c) = 1 Then
+                win1 += 1
+                win2 = 0
+            ElseIf table(h, c) = 2 Then
+                win2 += 1
+                win1 = 0
+            ElseIf table(h, c) = 0 Then
+                win1 = 0
+                win2 = 0
+            End If
+            If win1 = 4 Then
+                Win("player 1 diagonal")
+                Exit Sub
+            ElseIf win2 = 4 Then
+                Win("player 2 diagonal")
+                Exit Sub
+            End If
+            c += 1
+        Next
+        win1 = 0
+        win2 = 0
+        c = 1
+        For h As Integer = 0 To 5
+            If table(h, c) = 1 Then
+                win1 += 1
+                win2 = 0
+            ElseIf table(h, c) = 2 Then
+                win2 += 1
+                win1 = 0
+            ElseIf table(h, c) = 0 Then
+                win1 = 0
+                win2 = 0
+            End If
+            If win1 = 4 Then
+                Win("player 1 diagonal")
+                Exit Sub
+            ElseIf win2 = 4 Then
+                Win("player 2 diagonal")
+                Exit Sub
+            End If
+            c += 1
+        Next
+        win1 = 0
+        win2 = 0
+        c = 2
+        For h As Integer = 0 To 4
+            If table(h, c) = 1 Then
+                win1 += 1
+                win2 = 0
+            ElseIf table(h, c) = 2 Then
+                win2 += 1
+                win1 = 0
+            ElseIf table(h, c) = 0 Then
+                win1 = 0
+                win2 = 0
+            End If
+            If win1 = 4 Then
+                Win("player 1 diagonal")
+                Exit Sub
+            ElseIf win2 = 4 Then
+                Win("player 2 diagonal")
+                Exit Sub
+            End If
+            c += 1
+        Next
+        win1 = 0
+        win2 = 0
+        c = 3
+        For h As Integer = 0 To 3
+            If table(h, c) = 1 Then
+                win1 += 1
+                win2 = 0
+            ElseIf table(h, c) = 2 Then
+                win2 += 1
+                win1 = 0
+            ElseIf table(h, c) = 0 Then
+                win1 = 0
+                win2 = 0
+            End If
+            If win1 = 4 Then
+                Win("player 1 diagonal")
+                Exit Sub
+            ElseIf win2 = 4 Then
+                Win("player 2 diagonal")
+                Exit Sub
+            End If
+            c += 1
+        Next
+        win1 = 0
+        win2 = 0
+        c = 0
+
+
+#End Region
+#Region "Diagonal right-left"
+
+
+
+#End Region
+
+    End Sub
+
+    Public Sub Win(a As String)
+
+        MsgBox(a)
+        ResetAll()
+
+    End Sub
+    Public Sub ResetAll()
+
+        Dim change As String
+        Dim change2 As Integer
+
+        ResetTable()
+        UpdateLB()
+
+        For i As Integer = 0 To 56
+            If i > 6 And i < 10 Then
+                Continue For
+            ElseIf i >= 10 Then
+                change = i
+                change = change.Chars(1)
+                change2 = change
+                If change2 > 6 Then
+                    Continue For
+                End If
+            End If
+
+            If i < 10 Then
+                obj = Controls("c0" & i)
+                ChangeColor(obj, 0)
+            Else
+                obj = Controls("c" & i)
+                ChangeColor(obj, 0)
+            End If
+        Next
+
+    End Sub
+
+End Class
