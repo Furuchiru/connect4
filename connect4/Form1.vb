@@ -140,7 +140,6 @@ Public Class Form1
                 End If
             Next
         Next
-        c = 0
 #End Region
 #Region "Vertical"
         For o As Integer = 0 To 6 Step 1
@@ -166,10 +165,10 @@ Public Class Form1
                 End If
             Next
         Next
-        win1 = 0
-        win2 = 0
 #End Region
 #Region "Diagonal left-right"
+        win1 = 0
+        win2 = 0
         For h As Integer = 0 To 5
             If table(h, c) = 1 Then
                 win1 += 1
@@ -305,16 +304,146 @@ Public Class Form1
             End If
             c += 1
         Next
+#End Region
+#Region "Diagonal right-left"
         win1 = 0
         win2 = 0
         c = 0
-
-
-#End Region
-#Region "Diagonal right-left"
-
-
-
+        For h As Integer = 6 To 1 Step -1
+            If table(c, h) = 1 Then
+                win1 += 1
+                win2 = 0
+            ElseIf table(c, h) = 2 Then
+                win2 += 1
+                win1 = 0
+            ElseIf table(c, h) = 0 Then
+                win1 = 0
+                win2 = 0
+            End If
+            If win1 = 4 Then
+                Win("player 1 diagonal")
+                Exit Sub
+            ElseIf win2 = 4 Then
+                Win("player 2 diagonal")
+                Exit Sub
+            End If
+            c += 1
+        Next
+        win1 = 0
+        win2 = 0
+        c = 1
+        For h As Integer = 6 To 2 Step -1
+            If table(c, h) = 1 Then
+                win1 += 1
+                win2 = 0
+            ElseIf table(c, h) = 2 Then
+                win2 += 1
+                win1 = 0
+            ElseIf table(c, h) = 0 Then
+                win1 = 0
+                win2 = 0
+            End If
+            If win1 = 4 Then
+                Win("player 1 diagonal")
+                Exit Sub
+            ElseIf win2 = 4 Then
+                Win("player 2 diagonal")
+                Exit Sub
+            End If
+            c += 1
+        Next
+        win1 = 0
+        win2 = 0
+        c = 2
+        For h As Integer = 6 To 3 Step -1
+            If table(c, h) = 1 Then
+                win1 += 1
+                win2 = 0
+            ElseIf table(c, h) = 2 Then
+                win2 += 1
+                win1 = 0
+            ElseIf table(c, h) = 0 Then
+                win1 = 0
+                win2 = 0
+            End If
+            If win1 = 4 Then
+                Win("player 1 diagonal")
+                Exit Sub
+            ElseIf win2 = 4 Then
+                Win("player 2 diagonal")
+                Exit Sub
+            End If
+            c += 1
+        Next
+        win1 = 0
+        win2 = 0
+        c = 0
+        For h As Integer = 5 To 0 Step -1
+            If table(c, h) = 1 Then
+                win1 += 1
+                win2 = 0
+            ElseIf table(c, h) = 2 Then
+                win2 += 1
+                win1 = 0
+            ElseIf table(c, h) = 0 Then
+                win1 = 0
+                win2 = 0
+            End If
+            If win1 = 4 Then
+                Win("player 1 diagonal")
+                Exit Sub
+            ElseIf win2 = 4 Then
+                Win("player 2 diagonal")
+                Exit Sub
+            End If
+            c += 1
+        Next
+        win1 = 0
+        win2 = 0
+        c = 0
+        For h As Integer = 4 To 0 Step -1
+            If table(c, h) = 1 Then
+                win1 += 1
+                win2 = 0
+            ElseIf table(c, h) = 2 Then
+                win2 += 1
+                win1 = 0
+            ElseIf table(c, h) = 0 Then
+                win1 = 0
+                win2 = 0
+            End If
+            If win1 = 4 Then
+                Win("player 1 diagonal")
+                Exit Sub
+            ElseIf win2 = 4 Then
+                Win("player 2 diagonal")
+                Exit Sub
+            End If
+            c += 1
+        Next
+        win1 = 0
+        win2 = 0
+        c = 0
+        For h As Integer = 3 To 0 Step -1
+            If table(c, h) = 1 Then
+                win1 += 1
+                win2 = 0
+            ElseIf table(c, h) = 2 Then
+                win2 += 1
+                win1 = 0
+            ElseIf table(c, h) = 0 Then
+                win1 = 0
+                win2 = 0
+            End If
+            If win1 = 4 Then
+                Win("player 1 diagonal")
+                Exit Sub
+            ElseIf win2 = 4 Then
+                Win("player 2 diagonal")
+                Exit Sub
+            End If
+            c += 1
+        Next
 #End Region
 
     End Sub
