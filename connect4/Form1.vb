@@ -84,8 +84,8 @@ Public Class Form1
 
     Public Sub TimerOpen_Tick(sender As Object, e As EventArgs) Handles timerOpen.Tick
         Width = Width + 5
-        If Width > 800 Then
-            timerOpen.Enabled = False
+        If Width > 820 Then
+            TimerOpen.Enabled = False
         End If
     End Sub
 
@@ -139,11 +139,14 @@ Public Class Form1
     End Sub
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
-        Dim result As Integer = MessageBox.Show("Queri salir wn?", "Nos vimo?", MessageBoxButtons.YesNo)
-        If result = DialogResult.No Then
-
-        ElseIf result = DialogResult.Yes Then
+        Dim result = FlexibleMessageBox.Show("Exit Game?", "Bye!",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question,
+                                    MessageBoxDefaultButton.Button2)
+        If result.ToString = "Yes" Then
             Application.Exit()
+        ElseIf result.ToString = "No" Then
+
         End If
     End Sub
 

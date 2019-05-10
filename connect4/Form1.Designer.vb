@@ -179,7 +179,7 @@ Partial Class Form1
         Me.pnlOptions.Controls.Add(Me.tbPlayerName)
         Me.pnlOptions.Location = New System.Drawing.Point(510, 27)
         Me.pnlOptions.Name = "pnlOptions"
-        Me.pnlOptions.Size = New System.Drawing.Size(266, 405)
+        Me.pnlOptions.Size = New System.Drawing.Size(281, 405)
         Me.pnlOptions.TabIndex = 60
         '
         'pnlCircles
@@ -612,11 +612,11 @@ Partial Class Form1
         'menuStrip
         '
         Me.menuStrip.Dock = System.Windows.Forms.DockStyle.None
-        Me.menuStrip.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.menuStrip.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.menuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SettingsToolStripMenuItem, Me.AboutToolStripMenuItem, Me.ExitToolStripMenuItem})
         Me.menuStrip.Location = New System.Drawing.Point(0, 0)
         Me.menuStrip.Name = "menuStrip"
-        Me.menuStrip.Size = New System.Drawing.Size(261, 24)
+        Me.menuStrip.Size = New System.Drawing.Size(271, 25)
         Me.menuStrip.TabIndex = 62
         Me.menuStrip.Text = "MenuStrip1"
         '
