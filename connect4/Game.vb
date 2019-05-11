@@ -16,12 +16,12 @@ Public Class Game
         player = 1
         playerName = "Player"
         lblPlayer.Text = "Current Player: " & playerName & " - " & ConvPlayer(player)
-        Size = New Size(525, 480)
+        Size = New Size(520, 500)
         pnlOptions.Visible = False
+        'lbTable.Visible = False
         version = "1.5"
 
         ResetTable()
-        UpdateLB()
     End Sub
 
     'pictube box clicks
@@ -36,13 +36,13 @@ Public Class Game
         obj = CType(sender, PictureBox)
         column = obj.Name.Chars(1)
         row = obj.Name.Chars(2)
-        lblPos.Text = "Pos: " & column & row
 
         For i As Integer = 5 To 0 Step -1
             If table(i, row) = 0 Then
                 namae = "c" & i & row
                 obj = pnlCircles.Controls(namae)
                 If ChangeColor(obj, player) Then
+                    lblPos.Text = "Last played: " & i & row
                     table(i, row) = player
                     If player = 1 Then
                         player = 2
@@ -52,7 +52,6 @@ Public Class Game
                         'jugador 3 )?? XD
                     End If
                     CheckWin()
-                    UpdateLB()
                 End If
                 Exit For
             End If
@@ -85,7 +84,7 @@ Public Class Game
 
     Public Sub TimerOpen_Tick(sender As Object, e As EventArgs) Handles TimerOpen.Tick
         Width = Width + 5
-        If Width > 820 Then
+        If Width > 815 Then
             TimerOpen.Enabled = False
         End If
     End Sub
@@ -95,27 +94,13 @@ Public Class Game
         If Width < 620 Then
             pnlOptions.Visible = False
         End If
-        If Width < 525 Then
+        If Width < 520 Then
             TimerClose.Enabled = False
         End If
     End Sub
 
 #Region "Functions"
     'Functions
-
-    Public Sub UpdateLB()
-        'write 2d array to listbox // debug
-        Dim output As String
-        ListBox1.Items.Clear()
-        For i = 0 To 5
-            output = ""
-            For k As Integer = 0 To 6
-                output &= table(i, k) & " "
-            Next k
-            ListBox1.Items.Add(output)
-        Next i
-    End Sub
-
     Public Sub ResetTable()
         For i As Integer = 0 To 5
             For o As Integer = 0 To 6
@@ -522,9 +507,8 @@ Public Class Game
 
         Dim change As String
         Dim change2 As Integer
-
+        player = 1
         ResetTable()
-        UpdateLB()
 
         For i As Integer = 0 To 56
             If i > 6 And i < 10 Then
